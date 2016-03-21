@@ -62,6 +62,7 @@ class MakeVideo extends Command
         $titleFontSize = 57;
         $titleY = $height / 2 - $titleFontSize;
         $titleX = $width / 2;
+        $fontPath = storage_path('app/movie/font.otf');
 
 //    $imageid = $invID = str_pad($counter++, 3, '0', STR_PAD_LEFT);
 //    $path = storage_path("app/movie/img$imageid.jpg");
@@ -155,8 +156,8 @@ class MakeVideo extends Command
                 $path = storage_path("app/movie/img$imageid.jpg");
                 $img = Image::canvas($width, $height, $slide['background_color']);
                 $img->text(strtoupper($slide['title']), $width / 2, $height / 2 - 25,
-                    function($font) use ($titleFontSize, $slide){
-                        $font->file(storage_path('app/movie/font.otf'));
+                    function($font) use ($titleFontSize, $slide, $fontPath){
+                        $font->file($fontPath);
                         $font->size($titleFontSize);
                         $font->color($slide['text_color']);
                         $font->align('center');
@@ -183,8 +184,8 @@ class MakeVideo extends Command
             $tomatoWidth = 30;
 
             $img->text(strtoupper($slide['title']), $titleX, $titleY,
-                function($font) use ($img, $width, $titleFontSize, $height, $titleX, $titleY, $subtitleSpace, $tomatoWidth, $slide, $path){
-                    $font->file(storage_path('app/movie/font.otf'));
+                function($font) use ($fontPath, $img, $width, $titleFontSize, $height, $titleX, $titleY, $subtitleSpace, $tomatoWidth, $slide, $path){
+                    $font->file($fontPath);
                     $font->size($titleFontSize);
                     $font->color($slide['text_color']);
                     $font->align('center');
@@ -198,8 +199,8 @@ class MakeVideo extends Command
 
                     $subtitleX = $titleX + $tomatoWidth / 2;
                     $subtitleY = $titleY + $box['height'] + $subtitleSpace;
-                    $img->text($slide['subtitle'], $subtitleX, $subtitleY , function($font2) use ($img, $titleX, $subtitleX, $subtitleY, $tomatoWidth, $path, $slide) {
-                        $font2->file('/Library/Fonts/Futura.ttc');
+                    $img->text($slide['subtitle'], $subtitleX, $subtitleY , function($font2) use ($fontPath, $img, $titleX, $subtitleX, $subtitleY, $tomatoWidth, $path, $slide) {
+                        $font2->file($fontPath);
                         $font2->size(30);
                         $font2->color($slide['text_color']);
                         $font2->align('center');
