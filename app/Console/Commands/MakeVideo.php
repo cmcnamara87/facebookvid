@@ -156,7 +156,7 @@ class MakeVideo extends Command
                 $img = Image::canvas($width, $height, $slide['background_color']);
                 $img->text(strtoupper($slide['title']), $width / 2, $height / 2 - 25,
                     function($font) use ($titleFontSize, $slide){
-                        $font->file(storage_path('movie/font.otf'));
+                        $font->file(storage_path('app/movie/font.otf'));
                         $font->size($titleFontSize);
                         $font->color($slide['text_color']);
                         $font->align('center');
@@ -184,7 +184,7 @@ class MakeVideo extends Command
 
             $img->text(strtoupper($slide['title']), $titleX, $titleY,
                 function($font) use ($img, $width, $titleFontSize, $height, $titleX, $titleY, $subtitleSpace, $tomatoWidth, $slide, $path){
-                    $font->file(storage_path('movie/font.otf'));
+                    $font->file(storage_path('app/movie/font.otf'));
                     $font->size($titleFontSize);
                     $font->color($slide['text_color']);
                     $font->align('center');
